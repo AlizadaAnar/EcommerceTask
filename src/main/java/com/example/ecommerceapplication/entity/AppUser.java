@@ -21,7 +21,7 @@ public class AppUser {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "appUser", cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)//default is eager
+    @OneToMany(mappedBy = "appUser", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)//default is eager
     @JsonIgnore
     private List<AppOrder> appOrders;
 
@@ -38,7 +38,6 @@ public class AppUser {
             }
         }
     }
-
 
     public AppUser() {
     }
@@ -63,19 +62,6 @@ public class AppUser {
         this.name = name;
     }
 
-
-
-
-//    public void setOrders(List<AppOrder> appOrders) {
-//        this.appOrders = appOrders;
-//    }
-
-//    public List<AppOrder> getOrders() {
-//        return appOrders;
-//    }
-//
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -84,4 +70,14 @@ public class AppUser {
                 ", orders=" + appOrders +
                 '}';
     }
+
+
+    //    public void setOrders(List<AppOrder> appOrders) {
+//        this.appOrders = appOrders;
+//    }
+
+    //    public List<AppOrder> getOrders() {
+//        return appOrders;
+//    }
+//
 }

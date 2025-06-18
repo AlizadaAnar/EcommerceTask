@@ -17,8 +17,8 @@ public class AppOrder {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)//default is eager
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
+//    @JoinColumn(name = "user_id")
+//    @JsonIgnore
     private AppUser appUser;
 
     public AppOrder() {

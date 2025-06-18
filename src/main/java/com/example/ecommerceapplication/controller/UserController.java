@@ -18,29 +18,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/add") //create user
+    @PostMapping("/add")
     public AppUser createUser(@Valid @RequestBody AppUser appUser) {
          return userService.saveUser(appUser);
     }
 
-    @PutMapping("/{id}") //here we use for merging new orders
+    @PutMapping("/{id}")
     public AppUser updateUser(@PathVariable Long id, @RequestBody AppUser appUser) {
         appUser.setId(id);
         return userService.updateUser(appUser);
     }
 
-    @PutMapping("/by-id/{id}") //here we update exactly order
-    public String updateById(@RequestBody AppUser appUser, @PathVariable Long id) {
-        userService.updateByIdExactData(appUser, id);
-        return "successfully updated";
+    @GetMapping("/get-orders/{userId}")
+    public List<AppOrder> getOrders(@PathVariable Long userId) {
+        return userService.getUserOrdersById(userId);
     }
 
-    @GetMapping("/get-orders/{id}") //we get orders of user
-    public List<AppOrder> getOrders(@PathVariable Long id) {
-        return userService.getUserOrdersById(id);
-    }
-
-    @DeleteMapping("/{id}")  //delete user by user's id
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
@@ -54,4 +48,24 @@ public class UserController {
     public AppUser getUserById(@PathVariable Long id) {
         return userService.findById(id);
     }
+
+
+
+
+
+
+
+
+
+//    @PutMapping("/by-id/{id}")
+//    public String updateById(@RequestBody AppUser appUser, @PathVariable Long id) {
+//        userService.updateByIdExactData(appUser, id);
+//        return "successfully updated";
+//    }
+
+//    @GetMapping("/detach/{id}")
+//    public String detachUser(@PathVariable Long id) {
+//        userService.detachUser(id);
+//        return "User detached";
+//    }
 }
